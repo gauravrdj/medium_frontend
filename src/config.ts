@@ -1,0 +1,1 @@
+export const BACKEND_URL="https://backend.gauravjdh2021.workers.dev";
