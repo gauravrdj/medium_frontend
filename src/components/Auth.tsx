@@ -4,7 +4,7 @@ import { useState } from "react"
 import { SignupInput } from "common-zod-medium"
 import axios from 'axios'
 import { BACKEND_URL } from "../config"
-
+import {toast} from 'sonner'
 
 
 
@@ -25,14 +25,22 @@ export const Auth=({type}:{type: "signup" | "signin"})=>{
         const jwt=res.data.jwt;
          localStorage.setItem('token', jwt);
         //  if(jwt)
-         alert(res.data.msg);
-        
-         setLoading(false);
+        //  alert(res.data.msg);
+        if(res.data.status===200){
+            toast.success(`${res.data.msg}`);
+            navigate('/blogs')
+        }
+         else{
+            toast.error(`${res.data.msg}`);
+         }
          //Change the route
-         navigate('/blogs')
+         
+         setLoading(false);
     }
     catch(e){
-        alert("Error while Sign up");
+        // alert("Error while Sign up");
+        toast.error('Error while Signing up');
+        setLoading(false);
     }
     }
 
