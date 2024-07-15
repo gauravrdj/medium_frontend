@@ -4,7 +4,7 @@ import { useBlogs } from "../hooks"
 import { Skeleton } from "../components/skeleton"
 import moment from "moment"
 export const Blogs=()=>{
-    const {loading, blogs}=useBlogs();
+    const {loading, blogs}=useBlogs(); 
  
     if(loading || !blogs){
         //We can use here skeletons for loading
