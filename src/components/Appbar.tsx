@@ -1,6 +1,7 @@
-import { Avatar } from "./BlogCard";
+// import { Avatar } from "./BlogCard";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export const Appbar = () => {
   const navigate=useNavigate();
@@ -19,7 +20,17 @@ export const Appbar = () => {
           </button>
         </Link>
         <div className="flex items-center mr-4">
-          <Avatar name="Gaurav Sharma" />
+          {/* <Link to={'/myBlogs'}>
+          <Avatar name="My Publish" />
+          </Link> */}
+          <Link to={`/myBlogs`}>
+          <button
+            type="button"
+            className="mr-4 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 "
+          >
+            My Publish
+          </button>
+        </Link>
         </div>
         
           <button
@@ -28,6 +39,7 @@ export const Appbar = () => {
           onClick={async ()=>{
                await localStorage.clear();
                navigate('/signin')
+               toast.success('See you soon 👋');
           }} >
             Logout
           </button>

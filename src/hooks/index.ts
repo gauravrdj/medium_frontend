@@ -7,6 +7,7 @@ export interface Blog{
     title:string,
     content:string,
     id:string,
+    date:string,
     author:{
         name:string
     }
@@ -57,3 +58,27 @@ export const useBlog=({id}:{id:string})=>{
         blog,
     })
 }
+
+export const useMyBlogs = ()=>{
+    const [loading, setLoading]=useState(true);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+
+    useEffect(()=>{
+        axios.get(`${BACKEND_URL}/api/v1/blog/my`, {
+            headers:{
+                Authorization:`Bearer ${localStorage.getItem('token')}`
+            }
+        }).then((res)=>{
+            console.log(res)
+             setBlogs(res.data.personalBlogs);
+             setLoading(false);
+        });
+        
+    }, []);
+    
+    return ({
+        blogs,
+        loading,
+    })
+}
+
