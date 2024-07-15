@@ -21,7 +21,7 @@ export const Blogs=()=>{
                 </div>
             </div>
         </div>
-    }
+    } 
   
 
     return <div>
